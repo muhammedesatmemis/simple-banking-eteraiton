@@ -1,0 +1,22 @@
+version: '2.7'
+services:
+  simple-banking-app:
+    build: ./simple-banking-app
+    ports:
+      - 8080:8080
+    environment:
+      - spring.datasource.url=jdbc:postgresql://postgres:5432/simple-banking-app
+
+
+  postgres:
+    image: postgres
+    container_name: postgresdb
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: test
+    #    networks:
+    #      - my-network
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
